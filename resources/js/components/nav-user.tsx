@@ -1,4 +1,4 @@
-import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuPortal, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from '@/components/ui/sidebar';
 import { UserInfo } from '@/components/user-info';
 import { UserMenuContent } from '@/components/user-menu-content';
@@ -22,14 +22,16 @@ export function NavUser() {
                             <ChevronsUpDown className="ml-auto size-4" />
                         </SidebarMenuButton>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent
-                        className="min-w-56 rounded-lg"
-                        align="end"
-                        sideOffset={8}
-                        side={isMobile ? 'bottom' : state === 'collapsed' ? 'left' : 'bottom'}
-                    >
-                        <UserMenuContent user={auth.user} />
-                    </DropdownMenuContent>
+                    <DropdownMenuPortal>
+                        <DropdownMenuContent
+                            className="min-w-56 rounded-lg"
+                            align="end"
+                            sideOffset={8}
+                            side={isMobile ? 'bottom' : state === 'collapsed' ? 'left' : 'bottom'}
+                        >
+                            <UserMenuContent user={auth.user} />
+                        </DropdownMenuContent>
+                    </DropdownMenuPortal>
                 </DropdownMenu>
             </SidebarMenuItem>
         </SidebarMenu>
