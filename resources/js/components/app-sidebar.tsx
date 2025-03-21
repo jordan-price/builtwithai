@@ -4,7 +4,7 @@ import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { BookOpen, Folder, LayoutGrid } from 'lucide-react';
+import { BookOpen, Code, Folder, LayoutGrid, Search, Users, UserCircle, UserCog } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
@@ -13,17 +13,47 @@ const mainNavItems: NavItem[] = [
         href: '/dashboard',
         icon: LayoutGrid,
     },
+    {
+        title: 'Discover Projects',
+        href: '/projects',
+        icon: Search,
+    },
+    {
+        title: 'Engineers',
+        href: '/engineers',
+        icon: Users,
+    },
+    {
+        title: 'Members',
+        href: '/members',
+        icon: UserCircle,
+    },
+    // {
+    //     title: 'Categories',
+    //     href: '/categories',
+    //     icon: Layers,
+    // },
+    {
+        title: 'My Projects',
+        href: '/my-projects',
+        icon: Code,
+    },
+    {
+        title: 'My Engineer Profile',
+        href: '/my-engineer-profile',
+        icon: UserCog,
+    },
 ];
 
 const footerNavItems: NavItem[] = [
     {
-        title: 'Repository',
-        href: 'https://github.com/laravel/react-starter-kit',
+        title: 'GitHub Repo',
+        href: 'https://github.com/yourusername/builtwithai',
         icon: Folder,
     },
     {
         title: 'Documentation',
-        href: 'https://laravel.com/docs/starter-kits',
+        href: '/docs',
         icon: BookOpen,
     },
 ];
