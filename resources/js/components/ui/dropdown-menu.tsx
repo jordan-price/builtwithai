@@ -34,6 +34,17 @@ function DropdownMenuContent({
   sideOffset = 4,
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.Content>) {
+  const [isMounted, setIsMounted] = React.useState(false);
+  
+  React.useEffect(() => {
+    setIsMounted(true);
+  }, []);
+  
+  if (!isMounted && typeof window === 'undefined') {
+    // During SSR, render nothing
+    return null;
+  }
+  
   return (
     <DropdownMenuPrimitive.Portal>
       <DropdownMenuPrimitive.Content

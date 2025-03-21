@@ -6,21 +6,11 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import { type SharedData } from '@/types';
 import { usePage } from '@inertiajs/react';
 import { ChevronsUpDown } from 'lucide-react';
-import { useEffect, useState } from 'react';
 
 export function NavUser() {
     const { auth } = usePage<SharedData>().props;
     const { state } = useSidebar();
     const isMobile = useIsMobile();
-    const [mounted, setMounted] = useState(false);
-    
-    // Use useEffect with empty dependency array for client-side only code
-    useEffect(() => {
-        setMounted(true);
-    }, []);
-
-    // Don't render portal at all during SSR
-    const showPortal = mounted && typeof window !== 'undefined';
     
     return (
         <SidebarMenu>
@@ -32,16 +22,14 @@ export function NavUser() {
                             <ChevronsUpDown className="ml-auto size-4" />
                         </SidebarMenuButton>
                     </DropdownMenuTrigger>
-                    {showPortal && (
-                        <DropdownMenuContent
-                            className="min-w-56 rounded-lg"
-                            align="end"
-                            sideOffset={8}
-                            side={isMobile ? 'bottom' : state === 'collapsed' ? 'left' : 'bottom'}
-                        >
-                            <UserMenuContent user={auth.user} />
-                        </DropdownMenuContent>
-                    )}
+                    <DropdownMenuContent
+                        className="min-w-56 rounded-lg"
+                        align="end"
+                        sideOffset={8}
+                        side={isMobile ? 'bottom' : state === 'collapsed' ? 'left' : 'bottom'}
+                    >
+                        <UserMenuContent user={auth.user} />
+                    </DropdownMenuContent>
                 </DropdownMenu>
             </SidebarMenuItem>
         </SidebarMenu>
